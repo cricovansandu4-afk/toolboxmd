@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolBoxMD - Instrumente online gratuite</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 32px;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 21px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 7px 0;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 7px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .result {
+            margin-top: 12px;
+            padding: 10px;
+            background: #f1f5f9;
+            border-radius: 7px;
+            font-weight: bold;
+            min-height: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 15px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🧰 ToolBoxMD</h1>
+    <p>Instrumente online gratuite și ușor de folosit</p>
+</header>
+
+<div class="container">
+
+    <div class="tools">
+
+        <!-- Calculator procent -->
+        <div class="card">
+            <h2>📊 Calculator procent</h2>
+
+            <input type="number" id="percent" placeholder="Procent (%)">
+            <input type="number" id="number" placeholder="Număr">
+
+            <button onclick="calculatePercent()">Calculează</button>
+
+            <div class="result" id="percentResult"></div>
+        </div>
+
+        <!-- Calculator TVA -->
+        <div class="card">
+            <h2>💰 Calculator TVA</h2>
+
+            <input type="number" id="price" placeholder="Preț">
+            <input type="number" id="vat" placeholder="Cota TVA (%)">
+
+            <button onclick="calculateVAT()">Calculează</button>
+
+            <div class="result" id="vatResult"></div>
+        </div>
+
+        <!-- Media -->
+        <div class="card">
+            <h2>📈 Calculator medie</h2>
+
+            <input type="number" id="n1" placeholder="Numărul 1">
+            <input type="number" id="n2" placeholder="Numărul 2">
+            <input type="number" id="n3" placeholder="Numărul 3">
+
+            <button onclick="calculateAverage()">Calculează</button>
+
+            <div class="result" id="averageResult"></div>
+        </div>
+
+        <!-- Kg în livre -->
+        <div class="card">
+            <h2>⚖️ Kg → Livre</h2>
+
+            <input type="number" id="kg" placeholder="Kilogrami">
+
+            <button onclick="convertKg()">Convertește</button>
+
+            <div class="result" id="kgResult"></div>
+        </div>
+
+        <!-- Generator parolă -->
+        <div class="card">
+            <h2>🔐 Generator de parolă</h2>
+
+            <button onclick="generatePassword()">
+                Generează parola
+            </button>
+
+            <div class="result" id="passwordResult"></div>
+        </div>
+
+        <!-- Calculator simplu -->
+        <div class="card">
+            <h2>➕ Adunare rapidă</h2>
+
+            <input type="number" id="a" placeholder="Primul număr">
+            <input type="number" id="b" placeholder="Al doilea număr">
+
+            <button onclick="addNumbers()">Calculează</button>
+
+            <div class="result" id="addResult"></div>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 ToolBoxMD — Instrumente online gratuite
+</footer>
+
+
+<script>
+
+function calculatePercent() {
+    let percent = Number(document.getElementById("percent").value);
+    let number = Number(document.getElementById("number").value);
+
+    let result = number * percent / 100;
+
+    document.getElementById("percentResult").innerText =
+        "Rezultat: " + result;
+}
+
+
+function calculateVAT() {
+    let price = Number(document.getElementById("price").value);
+    let vat = Number(document.getElementById("vat").value);
+
+    let vatAmount = price * vat / 100;
+    let total = price + vatAmount;
+
+    document.getElementById("vatResult").innerText =
+        "TVA: " + vatAmount.toFixed(2) +
+        " | Total: " + total.toFixed(2);
+}
+
+
+function calculateAverage() {
+    let n1 = Number(document.getElementById("n1").value);
+    let n2 = Number(document.getElementById("n2").value);
+    let n3 = Number(document.getElementById("n3").value);
+
+    let average = (n1 + n2 + n3) / 3;
+
+    document.getElementById("averageResult").innerText =
+        "Media: " + average.toFixed(2);
+}
+
+
+function convertKg() {
+    let kg = Number(document.getElementById("kg").value);
+
+    let pounds = kg * 2.20462;
+
+    document.getElementById("kgResult").innerText =
+        kg + " kg = " + pounds.toFixed(2) + " lb";
+}
+
+
+function generatePassword() {
+
+    let characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";
+
+    let password = "";
+
+    for (let i = 0; i < 12; i++) {
+        password += characters.charAt(
+            Math.floor(Math.random() * characters.length)
+        );
+    }
+
+    document.getElementById("passwordResult").innerText =
+        password;
+}
+
+
+function addNumbers() {
+
+    let a = Number(document.getElementById("a").value);
+    let b = Number(document.getElementById("b").value);
+
+    let result = a + b;
+
+    document.getElementById("addResult").innerText =
+        "Rezultat: " + result;
+}
+
+</script>
+
+</body>
+</html>
